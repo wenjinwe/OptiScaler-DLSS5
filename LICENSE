@@ -1,0 +1,15 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+本仓库文档、配置与汉化成果以 GPL-3.0 授权发布（与 OptiScaler 上游一致）。
+完整协议文本见 https://www.gnu.org/licenses/gpl-3.0.txt
+
+内置第三方组件的版权归各原作者所有：
+- OptiScaler：GPL-3.0
+- NVIDIA Streamline / DLSS / Reflex / Smooth Motion：NVIDIA 专有许可，随游戏分发
+- Intel XeSS（libxess / libxess_fg）：Intel 专有许可
+- AMD FidelityFX（amd_fidelityfx_*）：MIT / AMD 许可
+- dlssg_unlock / dlssg_sm86 / sm_unlock：第三方开源，遵循各自目录内声明
+- ReShade / Special K：各自开源许可
+
+禁止任何渠道付费售卖本整合包；传播请保留本声明。
