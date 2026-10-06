@@ -1,10 +1,30 @@
 # Changelog
 
+## v1.4.6（2026-10-06）— 可选增强组件解析与文档化
+
+- 解析 bygalacos dev 线新构建 899b9488（无神经渲染，不替代基座）；
+- 组件查重结论：D3D12Core.dll + OptiPatcher.asi 包内已含（上游通用），本轮完整解析 + 文档化（体积 +0）；
+- D3D12Core.dll（3.2MB）：DX12 Agility SDK 升级 → Win10 老游戏（赛博朋克 2077 等）启用 FSR4；启用 FsrAgilitySDKUpgrade=true，回退 auto；
+- OptiPatcher.asi（102KB）：ASI 插件，由 OptiScaler 加载；启用 LoadAsiPlugins=true，回退 auto；
+- 两组件默认不启用，启用/回退写入 OptiScaler.ini 尾部注释块；91 文件 / 392.8MB 不变。
+
+## v1.4.5（2026-10-06）— 全面解析 + 合并重复 + 精简体积（-46%）
+
+- 全面解析：DLL 占 95%，无字节级重复，冗余在功能重叠组件；
+- 精简（均保留回退路径）：NR 默认切回官方原版 310.8（Lecram 性能版移出，需 20% 提升从原包找回）；FSR4 替换件 5→2 版（0.2d + 1.1b）；dlssg_unlock 3101/3109→3109；docs 清理 ~600KB；
+- 体积：997MB→694.5MB（RAW，-30%）；121→91 文件；zip level9 392.8MB（-46%）。
+
+## v1.4.1（2026-10-05）— XeFG + SM + FSR4 替换件集成
+
+- 新增 dlssg_unlock_3101 备用（早期稳定版，与 3109 二选一）；
+- 新增 FSR4 自定义替换件 5 版（非 RDNA3/4 显卡可用 FSR4：4.0.2 / 4.0.2b / 4.0.2c / 4.0.2d / 4.1.1b，PE 结构 + 行为特征审查通过）；
+- 其余 109 文件与 v1.4.0 逐字节一致（基座/汉化/19 键预设不变）。
+
 ## v1.4.0（2026-10-05）— XeFG+SM 集成版
 
 - 组件集成：新增 dlssg_unlock_3109（RTX 20/30 系 DLSSG 解锁，310.9 驱动版，2X~6X）；新增 sm_unlock 家族（Smooth Motion 解锁：616_92 驱动版 / 通用版 / SM86 专用）；
 - 基底 v1.3.0 + 19 键 XeFG 性能预设（均衡 16 + 激进 3）；DLL 基座零改动；
-- 集成前核验 F5 基座支持性（smooth/dlssg_sm86 引用串），libxess_fg 已含不重复集成；
+- 集成前核验基座支持性（smooth/dlssg_sm86 引用串），libxess_fg 已含不重复集成；
 - 109 文件 / 781MB；zip 完整性、DLL 哈希、19 键回读、5 新组件全部验证通过。
 
 ## v1.3.1（2026-10-05）— XeFG 性能优化预设
@@ -19,9 +39,9 @@
 - 代码节 0 差异（纯 .data 权重调优），PE 时间戳/checksum 一致；
 - 其余 101 文件与 v1.2.0 逐字节一致。
 
-## v1.2.0（2026-10-05）— F5 DLSSNR 基座
+## v1.2.0（2026-10-05）— 神经渲染基座
 
-- 基座升级 OptiScaler v0.1.26-final（6d2189f1）（F5 DLSSNR 深度分支，26,933,760 B）；
+- 基座升级 OptiScaler v0.1.26-final（6d2189f1）（神经渲染深度分支，26,933,760 B）；
 - 汉化 995 处（871 等长替换 + 124 超长精修），全文件 diff 仅在 UI 字符串区；
 - 补齐 streamline 全家桶（含 NR 大模型 165.8MB）、fakenvapi、OptiPatcher、dlssg_sm86、nvfp4、nvsmooth30 等 46 项组件；103 文件 / 591MB。
 
