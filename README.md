@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 # OptiScaler-DLSS5
 
@@ -10,7 +10,7 @@
 ![汉化 UI](https://img.shields.io/badge/汉化-2231处UI-2563eb?style=flat-square)
 ![组件](https://img.shields.io/badge/组件-159项-7c3aed?style=flat-square)
 
-**[下载 v1.4.40](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)** · [使用说明](使用说明.md) · [更新记录](Changelog.md) · [汉化基准规范](汉化基准规范.md)
+**[下载 v1.4.40](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)** · [安装](INSTALL.md) · [更新记录](Changelog.md) · [已知问题](Issues.md) · [汉化基准规范](汉化基准规范.md)
 
 </div>
 
@@ -81,6 +81,9 @@
 | D3D12_OptiScaler/ | DX12 Agility SDK 升级组件（可选） |
 | plugins/OptiPatcher.asi | ASI 插件（可选） |
 | dxgi.dll / winmm.dll / version.dll / dinput8.dll | 注入入口（按游戏 API 选择） |
+| Check_DLSS_Runtime.bat | 运行库检查：DLSS / Streamline / NR 组件版本速查 |
+| switch_nr_precision.bat | NR 计算精度三模式切换（自动 / 标准 / FP8） |
+| get_streamline.ps1 / runtime_sync.ps1 | Streamline 获取 / 运行库同步（四重防护） |
 
 ## 注意事项
 
@@ -93,10 +96,13 @@
 
 ## 文档导航
 
-- [使用说明.md](使用说明.md)：安装 / 按键 / 版本更新说明
+- [INSTALL.md](INSTALL.md)：安装 / 卸载 / 运行库检查 / 常见问题
+- [使用说明.md](使用说明.md)：包内安装与按键说明
 - [Config.md](Config.md)：配置键说明
 - [Features.md](Features.md)：功能总览
 - [Changelog.md](Changelog.md)：完整版本记录
+- [Issues.md](Issues.md)：已知问题与限制
+- [Spoofing.md](Spoofing.md)：显卡伪装说明
 - [汉化基准规范.md](汉化基准规范.md)：汉化术语表 / 铁律 / 版本线（索引版）
 
 ## 许可与免责声明
