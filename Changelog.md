@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.4.40（2026-10-08）— 三轮解析-修复循环（同版本优化，DLL 基座零改动）
+
+**第一轮 · 脚本层 4 处修复 + 换行标准化**
+- runtime_sync.ps1 路径 bug：nvngx 三组件路径改 StreamlineDir + 旧布局兼容回退；
+- Check_DLSS_Runtime.bat 清除两行英文残留；
+- switch_nr_precision.bat 全局替换改限定 [DlssNr] 区（其他区零误改）；
+- Check/switch 内嵌单引号路径改环境变量传递（防特殊字符注入）；
+- 9 个 bat/ps1 换行统一 CRLF。
+
+**第二轮 · 运行冒烟 + 键表交叉验证**
+- Check 冒烟 exit 0：中文标题 + 包内组件版本速查正常（Streamline 2.14.1 / 16 组件）；
+- switch 冒烟：选 2 → [DlssNr] Precision=4；选 1 → 恢复 0；
+- DLL 键表 12 键名全被基座识别（无无效键）；汉化串 UTF-8 全在位（无回退）。
+
+**第三轮 · 文档一致性 + 禁止字样清理**
+- 使用说明两处第三方作者人名去除；必看说明「汉化 bug」→「bug」；
+- 版本号脚本统一 v1.4.40。
+
+- 验证：159 文件 / 419.3MB；SHA256SUMS 158 条；zip SHA256 `D0226104…`；DLL 基座零改动（1E386371…）。
+
 ## v1.4.39（2026-10-08）— 安装器 `& goto` 陷阱修复 + DX11 键补全
 
 - setup_windows.bat 两处 `& goto` 陷阱修复：GPU 选择块与注入文件选择块原 `if ... set ... & goto` 写法使 goto 无条件执行（任意非空输入直接跳过判断，INJFILE 可能为空、无效输入不重输、AMD 选项错位）；改为逐条 if 匹配 + `if not defined ... goto 重输` 正确逻辑（全文件 ` & goto` 残留 0）；
