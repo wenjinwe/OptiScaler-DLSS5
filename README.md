@@ -6,11 +6,11 @@
 
 **简体中文**
 
-[![集成重构版 v1.4.38](https://img.shields.io/badge/集成重构版-v1.4.38-76b900?style=flat-square)](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)
+[![集成重构版 v1.4.39](https://img.shields.io/badge/集成重构版-v1.4.39-76b900?style=flat-square)](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)
 ![汉化 UI](https://img.shields.io/badge/汉化-2231处UI-2563eb?style=flat-square)
 ![组件](https://img.shields.io/badge/组件-158项-7c3aed?style=flat-square)
 
-**[下载 v1.4.38](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)** · [使用说明](使用说明.md) · [更新记录](Changelog.md) · [汉化基准规范](汉化基准规范.md)
+**[下载 v1.4.39](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)** · [使用说明](使用说明.md) · [更新记录](Changelog.md) · [汉化基准规范](汉化基准规范.md)
 
 </div>
 
@@ -30,17 +30,19 @@
 | UI | 基准蓝主题、窗口可缩放、主题自动保存、FPS 悬浮窗七模式、UI 大小默认自动 |
 | 安装卸载 | setup_windows.bat 数字键选择；卸载前校验 OriginalFilename 防误删游戏原文件 |
 
-## v1.4.38 要点
+## v1.4.39 要点
 
-- **8 个脚本逐行全量审查零 bug**（3 bat + 5 ps1：注入校验 / 清单门控 / 路径加固 / Streamline 更新 SHA256+签名+白名单多重防护 / runtime 同步保护 Legacy SL 不降级 / 零网络外联）
-- **UI 大小默认自动**（MenuWidth/Height=auto + Scale=auto，低分辨率自动缩小）
-- DLL 基座零改动（哈希基准一致），158 文件 / 417.83MB，SHA256SUMS 全部核验
+- **安装器两处 `& goto` 陷阱修复**：GPU 选择与注入文件选择不再出现"任意输入直接跳过判断 / AMD 选项错位 / 无效输入不重输"，选择逻辑改为逐条 if 匹配 + 无效重输
+- **补 DX11 设备错误修复键**：ini `[Hooks]` 段新增 `D3D11FeatureLevelElevation=auto`（针对启动时因设备错误失败的 DX11 游戏，可停用 FeatureLevel 提升）
+- **ini 换行规范化**：整体恢复 CRLF（1973 行）
+- 158 文件 / 438.13MB，SHA256SUMS 全部核验，zip SHA `A98916ED…`
 
 ## 版本线（Releases）
 
 | 版本 | 内容 |
 | --- | --- |
-| **v1.4.38（最新）** | 8 脚本全量审查零 bug；UI 大小默认自动；158 文件 / 417.83MB |
+| **v1.4.39（最新）** | 安装器 `& goto` 陷阱修复；D3D11FeatureLevelElevation 键补全；ini CRLF 规范 |
+| v1.4.38 | 8 脚本全量审查零 bug；UI 大小默认自动；158 文件 / 417.83MB |
 | v1.4.36 | 深度精简定稿：合并重复、FSR4 替换件 2 版、去除冗余组件 |
 | v1.4.33 | 安装器块内 goto 闪退修复；子串冲突修复；补译收尾 |
 | v1.4.27 | 神经渲染菜单补译；人物脸部渲染调节修复 |
@@ -104,4 +106,4 @@
 
 - 上游：[OptiScaler](https://github.com/optiscaler/OptiScaler) 及神经渲染社区分支
 - 构建参考：[OptiScalerBuilder](https://github.com/bygalacos/OptiScalerBuilder)、[OptiScaler-Aurora](https://github.com/abc354402600/OptiScaler-Aurora)、[F5-DLSSNR-Multipass](https://github.com/janblade/OptiScaler-F5-DLSSNR-Multipass)、[DLSSNR-PreSR-Multipass](https://github.com/wilsjo2/OptiScaler-DLSSNR-PreSR-Multipass)
-- 汉化基准：[汉化基准规范.md](汉化基准规范.md)（v1.63，术语表 + 等长替换 + 安全验证流程）
+- 汉化基准：[汉化基准规范.md](汉化基准规范.md)（术语表 + 等长替换 + 安全验证流程）
