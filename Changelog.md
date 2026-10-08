@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.4.39（2026-10-08）— 安装器 `& goto` 陷阱修复 + DX11 键补全
+
+- setup_windows.bat 两处 `& goto` 陷阱修复：GPU 选择块与注入文件选择块原 `if ... set ... & goto` 写法使 goto 无条件执行（任意非空输入直接跳过判断，INJFILE 可能为空、无效输入不重输、AMD 选项错位）；改为逐条 if 匹配 + `if not defined ... goto 重输` 正确逻辑（全文件 ` & goto` 残留 0）；
+- ini `[Hooks]` 段补 `D3D11FeatureLevelElevation=auto`（0.1.27.1 引入的 DX11 设备错误修复键：启动因设备错误失败的 DX11 游戏可设 false 停用 FeatureLevel 提升，否则保持 auto 开启）；
+- ini 换行规范化：整体恢复 CRLF（1973 行）；
+- 158 文件 / 438.13MB；zip SHA256 `A98916ED…`；DLL 基座零改动（1E386371…）；SHA256SUMS 全部核验。
+
 ## v1.4.38（2026-10-08）— 8 脚本全量审查 + UI 大小默认自动
 
 - 3 bat + 5 ps1 逐行全量审查（~1596 行）零 bug：注入件 OriginalFilename 校验完备、清单门控与路径加固在位、get_streamline 四重防护（SHA256 + Authenticode + 白名单 + 目录限制）、runtime_sync 仅清临时文件且保护 Legacy/Unknown SL、零网络外联/零用户数据读写；
