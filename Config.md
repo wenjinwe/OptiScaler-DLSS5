@@ -1,6 +1,6 @@
 # Config — OptiScaler.ini 配置说明
 
-> 仓库内 OptiScaler.ini 为 v1.4.6 默认配置（XeFG 19 键性能预设已应用 + 画质保护基线注释块）。
+> 仓库内 OptiScaler.ini 为 v1.4.40 关键键示例（节选）；完整版见成品包内 OptiScaler.ini（390 键，中文注释全量，含 XeFG 19 键性能预设 + 画质保护基线注释块）。
 > 完整键表以 ini 内注释为准；本页说明常用键与性能预设。
 
 ## 一、XeFG 性能预设（v1.3.1 起）
@@ -38,6 +38,10 @@
 | ForceReflex | [fakenvapi] | 2 | DLSSG 所需 Reflex 状态自动补全 |
 | PreserveSwapChain / SkipResizeBuffers | — | true | BackBuffer 同步防 FG 自动失效 |
 | ModifyBufferState / ModifySCIndex | — | auto | 仍失效时按需开启（问题游戏） |
+| Precision | [DlssNr] | 0 | 神经渲染计算精度（0=自动 / 1=标准 / 4=FP8；用 switch_nr_precision.bat 切换） |
+| D3D11FeatureLevelElevation | [Hooks] | auto | DX11 设备错误修复（启动失败的 DX11 游戏设 false） |
+
+> v1.4.40 起：`switch_nr_precision.bat` 数字键切换 NR 计算精度（1=恢复自动 Precision=0 / 2=FP8 Precision=4），只改 [DlssNr] 区，其他区零误改。
 
 ## 三、可选增强组件（v1.4.6）
 
