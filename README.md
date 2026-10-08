@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 # OptiScaler-DLSS5
 
@@ -6,11 +6,11 @@
 
 **简体中文**
 
-[![集成重构版 v1.4.39](https://img.shields.io/badge/集成重构版-v1.4.39-76b900?style=flat-square)](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)
+[![集成重构版 v1.4.40](https://img.shields.io/badge/集成重构版-v1.4.40-76b900?style=flat-square)](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)
 ![汉化 UI](https://img.shields.io/badge/汉化-2231处UI-2563eb?style=flat-square)
-![组件](https://img.shields.io/badge/组件-158项-7c3aed?style=flat-square)
+![组件](https://img.shields.io/badge/组件-159项-7c3aed?style=flat-square)
 
-**[下载 v1.4.39](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)** · [使用说明](使用说明.md) · [更新记录](Changelog.md) · [汉化基准规范](汉化基准规范.md)
+**[下载 v1.4.40](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)** · [使用说明](使用说明.md) · [更新记录](Changelog.md) · [汉化基准规范](汉化基准规范.md)
 
 </div>
 
@@ -30,18 +30,21 @@
 | UI | 基准蓝主题、窗口可缩放、主题自动保存、FPS 悬浮窗七模式、UI 大小默认自动 |
 | 安装卸载 | setup_windows.bat 数字键选择；卸载前校验 OriginalFilename 防误删游戏原文件 |
 
-## v1.4.39 要点
+## v1.4.40 要点
 
-- **安装器两处 `& goto` 陷阱修复**：GPU 选择与注入文件选择不再出现"任意输入直接跳过判断 / AMD 选项错位 / 无效输入不重输"，选择逻辑改为逐条 if 匹配 + 无效重输
-- **补 DX11 设备错误修复键**：ini `[Hooks]` 段新增 `D3D11FeatureLevelElevation=auto`（针对启动时因设备错误失败的 DX11 游戏，可停用 FeatureLevel 提升）
-- **ini 换行规范化**：整体恢复 CRLF（1973 行）
-- 158 文件 / 438.13MB，SHA256SUMS 全部核验，zip SHA `A98916ED…`
+- **三轮解析-修复循环（同版本优化）**：runtime_sync.ps1 组件路径修复；Check 脚本英文残留清除；精度切换脚本限定 [DlssNr] 区（其他区零误改）
+- **运行冒烟验证通过**：Check_DLSS_Runtime.bat（中文标题 + 包内组件版本速查）、switch_nr_precision.bat（选 2→Precision=4 / 选 1→恢复 0）
+- **DLL 键表交叉验证**：12 个自定义键名全被基座识别（无无效键）；汉化串 UTF-8 全在位（无回退）
+- **文档一致性**：去除第三方构建作者人名残留，版本号脚本统一 v1.4.40
+- **DLL 基座零改动**：OptiScaler.dll 27,552,768B / SHA `1E386371…`（自 v1.2.0 不变）
+- 159 文件 / 419.3MB，SHA256SUMS 全部核验，zip SHA `D0226104…`
 
 ## 版本线（Releases）
 
 | 版本 | 内容 |
 | --- | --- |
-| **v1.4.39（最新）** | 安装器 `& goto` 陷阱修复；D3D11FeatureLevelElevation 键补全；ini CRLF 规范 |
+| **v1.4.40（最新）** | 三轮解析-修复循环：脚本 4 处修复 + 运行冒烟 + 键表交叉 + 禁止字样清理；DLL 基座零改动 |
+| v1.4.39 | 安装器 `& goto` 陷阱修复；D3D11FeatureLevelElevation 键补全；ini CRLF 规范 |
 | v1.4.38 | 8 脚本全量审查零 bug；UI 大小默认自动；158 文件 / 417.83MB |
 | v1.4.36 | 深度精简定稿：合并重复、FSR4 替换件 2 版、去除冗余组件 |
 | v1.4.33 | 安装器块内 goto 闪退修复；子串冲突修复；补译收尾 |
