@@ -1,6 +1,6 @@
 # Features — 功能总览
 
-> 基于神经渲染基座（0.1.27.1，DLL 哈希 1E386371）+ v1.4.40 组件整合（159 文件 / 419.3MB）。以下功能对应菜单项与配置键。
+> 基于神经渲染基座（0.1.27.2 光学 F5Low，DLL 哈希 0d7475ba）+ v1.4.47 组件整合（159 文件 / 419.3MB）。以下功能对应菜单项与配置键。
 
 ## 一、超分辨率（Upscaling）
 
@@ -27,9 +27,10 @@
 ## 三、神经渲染（NR）
 
 - N 卡 RTX 20+；菜单：启用神经网络渲染（默认无快捷键，需自行设置）；
-- 曝光/白点校准、模型预设（NetworkModel）、模型精度/通道、HDR 色调映射；
+- **光学 F5Low**（0.1.27.2 起）：无升频器游戏中的 DLSS-NR 独立成页（F5Low 状态 / Passes 说明 / 曝光 / 自动曝光 / 白点来源 / 校准点 / 模型精度 / 细节重用 / Sigma 下限全套设置）；菜单头一次性提示键 `[Menu] F5LowHint=false`（本包已关闭提示）；
+- F5Low 低延迟：无 Reflex 游戏 NVIDIA 卡自动装 NVIDIA Reflex，其他经 fakenvapi 装 Anti-Lag 2 / XeLL / LatencyFlex（默认开启）；
+- 曝光新增"原生"起点选项（保持游戏本色）；线性可选作曲线；
 - 计算精度三模式（v1.4.40 配置层）：自动 / 标准精度 / FP8，用 `switch_nr_precision.bat` 切换（[DlssNr] Precision=0/1/4），避免错误修改不兼容的 DLSS NR 运行时；
-- NR 需要 DX12 桥接（NR needs the D3D12 bridge on D3D11——DX11 游戏请配合超分使用）；
 - 模型：官方原版 310.8（默认，合规不损画质）；Lecram 性能版为可选件，需 20% 提升时从原包找回并备份原版；
 - 人脸渲染调节（v1.4.27 起）：肤色与人脸区域识别优化，DX11/DX12/Vulkan 同步更新。
 
@@ -45,7 +46,8 @@
 - Vulkan：Vulkan AntiLag / 超分路径（VulkanUpscaler / VulkanExtensionSpoofing）；
 - 老卡 MFG 解锁：SM75/SM86（Enable SM86/SM75 MFG (experimental; restart)）；
 - Streamline 能力识别：[FrameGen] StreamlineIgnoreOTA=true（只用包内 streamline 全家桶，忽略驱动 OTA 缓存）；
-- DX11 设备错误修复：[Hooks] D3D11FeatureLevelElevation=auto（启动失败的 DX11 游戏设 false）。
+- DX11 设备错误修复：[Hooks] D3D11FeatureLevelElevation=auto（启动失败的 DX11 游戏设 false）；
+- 注入链版本一致：dxgi.dll（注入器）与 OptiScaler.dll（核心）尺寸/SHA 必须一致（升级后核验）。
 
 ## 六、可选增强组件
 
