@@ -1,12 +1,8 @@
 # Config — OptiScaler.ini 配置说明
-
-> 仓库内 OptiScaler.ini 为 v1.4.47 关键键示例（节选）；完整版见成品包内 OptiScaler.ini（390 键，中文注释全量，含 XeFG 19 键性能预设 + 画质保护基线注释块）。
+> 仓库内 OptiScaler.ini 为 0.1.31 完整键表（2151 行，中文注释全量，含 XeFG 19 键性能预设 + 画质保护基线注释块）。
 > 完整键表以 ini 内注释为准；本页说明常用键与性能预设。
-
 ## 一、XeFG 性能预设（v1.3.1 起）
-
 ### 均衡档（默认应用，低风险）
-
 | 键 | 值 | 说明 |
 | --- | --- | --- |
 | LogToFile | false | 日志不写盘（减少磁盘 I/O 开销） |
@@ -19,17 +15,13 @@
 | AllowedFrameAhead | 1 | 最小生成帧队列（避免帧堆积延迟） |
 | BuildPipelines / CreateHeaps / UsePrecompiledShaders | true | XeSS 管线/堆预构建 + 预编译着色器 |
 | DepthValidNow / VelocityValidNow / HudlessValidNow | false | 关闭 ValidNow 系列（省显存） |
-
 ### 激进档（可选，风险自担）
-
 | 键 | 值 | 说明 |
 | --- | --- | --- |
 | UseMutexForSwapchain | false | 减少锁竞争（代价：稳定性下降） |
 | ForceReflex | 2 | 强制 Reflex 低延迟 |
 | FramerateLimit | 0 | 不限帧率（由 Reflex/XeLL 控制） |
-
-## 二、帧生成专项键（v1.4.2/1.4.4 起）
-
+## 二、帧生成专项键
 | 键 | 段 | 值 | 说明 |
 | --- | --- | --- | --- |
 | AmpereMfgUnlock | [DLSSG] | true | 内置 MFG 解锁（RTX 20/30 系 4X，与外部解锁件二选一） |
@@ -40,30 +32,27 @@
 | ModifyBufferState / ModifySCIndex | — | auto | 仍失效时按需开启（问题游戏） |
 | Precision | [DlssNr] | 0 | 神经渲染计算精度（0=自动 / 1=标准 / 4=FP8；用 switch_nr_precision.bat 切换） |
 | D3D11FeatureLevelElevation | [Hooks] | auto | DX11 设备错误修复（启动失败的 DX11 游戏设 false） |
-
-> v1.4.40 起：`switch_nr_precision.bat` 数字键切换 NR 计算精度（1=恢复自动 Precision=0 / 2=FP8 Precision=4），只改 [DlssNr] 区，其他区零误改。
-
-## 三、光学 F5Low 键（0.1.27.2 起，v1.4.43 并入）
-
+## 三、0.1.31 新增键（v1.4.53 并入）
+| 键 | 段 | 值 | 说明 |
+| --- | --- | --- | --- |
+| FrameCapOnly | [Framerate] | auto | 低延迟「仅限帧数」：把 FPS 上限等待移到游戏读取输入前（0.1.31 低延迟统一层） |
+| NativeUpscalerPass | [DlssNr] | auto | F5Low 帧生成提速：开启时后端不再跑超分遍，NR 直接作用于游戏原画面 |
+| LoadAsiPlugins | [Plugins] | true | ASI 插件加载开关（配套 plugins/MFGUnlocker.asi + OptiPatcher.asi；0.1.31 菜单新增复选框） |
+## 四、光学 F5Low 键（0.1.27.2 起）
 | 键 | 段 | 值 | 说明 |
 | --- | --- | --- | --- |
 | F5LowHint | [Menu] | false | 光学 F5Low 一次性提示开关（false 关闭菜单头提示） |
 | F5Low | [F5Low] | auto | 光学 F5Low 总开关（无升频器游戏的 DLSS-NR） |
 | Latency | [F5Low] | auto | F5Low 低延迟（无 Reflex 游戏自动装 NVIDIA Reflex / Anti-Lag 2 / XeLL / LatencyFlex） |
 | Native | [F5Low] | auto | 曝光"原生"起点（保持游戏本色） |
-
-## 四、可选增强组件（v1.4.6）
-
+## 五、可选增强组件
 | 键 | 段 | 默认 | 说明 |
 | --- | --- | --- | --- |
 | FsrAgilitySDKUpgrade | [D3D12] | auto | true 启用 D3D12Core.dll（Agility SDK 升级，Win10 老游戏开 FSR4）；回退 auto |
-| LoadAsiPlugins | [Plugins] | auto | true 启用 OptiPatcher.asi（ASI 插件）；回退 auto |
-
-- 组件文件已在包内（D3D12_OptiScaler\D3D12Core.dll / plugins\OptiPatcher.asi），默认不启用；
-- 两键启用方式与回退路径完整写在 OptiScaler.ini 尾部 v1.4.6 注释块。
-
-## 五、常用键速查
-
+| LoadAsiPlugins | [Plugins] | true | true 启用 ASI 插件（MFGUnlocker.asi 开箱即用 + OptiPatcher.asi）；回退 auto 全部停用 |
+- 组件文件已在包内（D3D12_OptiScaler\D3D12Core.dll / plugins\MFGUnlocker.asi + OptiPatcher.asi / DLSSG6X独立组件\winmm.dll），默认不启用（MFGUnlocker 插件位默认启用）；
+- 键启用方式与回退路径完整写在 OptiScaler.ini 尾部注释块。
+## 六、常用键速查
 | 键 | 默认 | 说明 |
 | --- | --- | --- |
 | ShortcutKey | auto | 菜单快捷键（默认 Insert） |
@@ -75,14 +64,11 @@
 | XeSSPath / XeFGPath | auto | XeSS 超分 / XeSS 帧生成 DLL 路径 |
 | FGInput / FGOutput | auto | 帧生成输入/输出后端 |
 | DisableOTA | auto | 禁用 OTA 检查 |
-
-## 六、倍率与显存建议
-
+| FrameCapOnly | auto | 低延迟「仅限帧数」（0.1.31） |
+## 七、倍率与显存建议
 - InterpolationCount 1=2X / 2=3X / 3=4X；4X 需显存 ≥12GB 且原生帧率 ≥60；
-- 6X 需配合 dlssg_sm86（MaxGeneratedFrames=5）或 MFG 解锁组件；
+- 6X 需配合 dlssg_sm86（MaxGeneratedFrames=5）或 MFG 解锁组件 / DLSSG6X 独立组件；
 - 显存压力高时：保持 ValidNow 系列 false + 关闭 HUD 叠加层（Page Up 快捷键）。
-
-## 七、日志诊断回退
-
+## 八、日志诊断回退
 - 出问题先看日志：将 LogToFile 改回 true、LogLevel 改回 2，复现后查看 logs/；
 - 一键回退：删除 OptiScaler.ini 让程序重建默认配置（或使用备份）。
