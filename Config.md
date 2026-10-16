@@ -1,5 +1,5 @@
 # Config — OptiScaler.ini 配置说明
-> 仓库内 OptiScaler.ini 为 v1.4.53 关键键示例（节选）；完整版（2151 行，中文注释全量）见成品包内 OptiScaler.ini。
+> 仓库内 OptiScaler.ini 为 v1.4.55 关键键示例（节选）；完整版（2151 行，中文注释全量）见成品包内 OptiScaler.ini。
 > 完整键表以 ini 内注释为准；本页说明常用键与性能预设。
 ## 一、XeFG 性能预设（v1.3.1 起）
 ### 均衡档（默认应用，低风险）
@@ -50,7 +50,7 @@
 | --- | --- | --- | --- |
 | FsrAgilitySDKUpgrade | [D3D12] | auto | true 启用 D3D12Core.dll（Agility SDK 升级，Win10 老游戏开 FSR4）；回退 auto |
 | LoadAsiPlugins | [Plugins] | true | true 启用 ASI 插件（MFGUnlocker.asi 开箱即用 + OptiPatcher.asi）；回退 auto 全部停用 |
-- 组件文件已在包内（D3D12_OptiScaler\D3D12Core.dll / plugins\MFGUnlocker.asi + OptiPatcher.asi / DLSSG6X独立组件\winmm.dll），默认不启用（MFGUnlocker 插件位默认启用）；
+- 组件文件已在包内（D3D12_OptiScaler\D3D12Core.dll / plugins\MFGUnlocker.asi + OptiPatcher.asi / DLSSG独立组件\version.dll），默认不启用（MFGUnlocker 插件位默认启用）；
 - 键启用方式与回退路径完整写在 OptiScaler.ini 尾部注释块。
 ## 六、常用键速查
 | 键 | 默认 | 说明 |
@@ -67,7 +67,7 @@
 | FrameCapOnly | auto | 低延迟「仅限帧数」（0.1.31） |
 ## 七、倍率与显存建议
 - InterpolationCount 1=2X / 2=3X / 3=4X；4X 需显存 ≥12GB 且原生帧率 ≥60；
-- 6X 需配合 dlssg_sm86（MaxGeneratedFrames=5）或 MFG 解锁组件 / DLSSG6X 独立组件；
+- 6X 需配合 dlssg_sm86（MaxGeneratedFrames=5）或 MFG 解锁组件 / DLSSG 独立组件；
 - 显存压力高时：保持 ValidNow 系列 false + 关闭 HUD 叠加层（Page Up 快捷键）。
 ## 八、日志诊断回退
 - 出问题先看日志：将 LogToFile 改回 true、LogLevel 改回 2，复现后查看 logs/；

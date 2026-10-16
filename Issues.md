@@ -10,7 +10,7 @@
 - 数据在内存中，但基座 UI 无此列表项；用根目录 `Check_DLSS_Runtime.bat` 速查包内组件版本。
 ### 3. RTX 40 系 5X / 6X 无原生支持
 - 基座对 RTX 40 系仅游戏原生 DLSSG（4X）；5X/6X 需外部解锁组件；
-- 解锁组件（内置 AmpereMfgUnlock / dlssg_unlock / MFGUnlocker 插件位 / DLSSG6X 独立组件）【多方案二选一】，不可同时使用。
+- 解锁组件（内置 AmpereMfgUnlock / dlssg_unlock / MFGUnlocker 插件位 / DLSSG 独立组件）【多方案二选一】，不可同时使用。
 ### 4. 0.1.31 上游已知问题（官方 release notes 实录）
 - XeFG 4x：帧数上限可能偏高（v0.1.29 中约 90 帧而非 80 帧）；
 - DXVK 游戏：Alt+Enter 后画面可能停止更新（游戏仍运行；切换全屏/无边框不应再丢失帧生成，但尚未在游戏内全量验证）；
@@ -20,13 +20,15 @@
 ## 二、使用注意事项
 - 神经渲染为实验性功能，成本较高且可能闪烁，建议先开 1 个 Pass 测试；
 - 人脸渲染调节在部分光照 / 画风下效果不明显（上游限制，v1.4.27 已尽力优化）；
-- MFG 解锁多方案不可同时使用（内置解锁 / dlssg_unlock 替换件 / MFGUnlocker 插件位 / DLSSG6X 独立组件）；
-- **nvngx_dlssnr.dll 不随升级替换**：需要新版本时自行手动替换（替换前备份原文件）；
+- MFG 解锁多方案不可同时使用（内置解锁 / dlssg_unlock 替换件 / MFGUnlocker 插件位 / DLSSG 独立组件）；
+- **nvngx_dlssnr.dll 不随升级替换**：包内为 ShortFuse 310.8 兼容版（全系通用）；需要新版本时自行手动替换（替换前备份原文件）；
+- **dlssg 运行库与 MFGUnlocker 兼容**（v1.4.55 修复记录，规范 §16.145）：包内 streamline `nvngx_dlssg.dll` 维持 **310.9.16**（独立组件路线）；若配合 MFGUnlocker 插件位出现「帧生成下拉无 DLSS」，按以下路径排查：①MFGUnlocker 日志对照（support query 0→32 为成功、GetState 0x0 为失败）②provider 候选版本对比（310.9.1 与 MFGUnlocker Dynamic MFG 兼容，310.9.16 为 general only）③按需切换 DLSSG 独立组件部署；
 - 防反作弊：避免在启用反作弊的多人在线游戏中使用（可能导致封号）；
 - Vulkan 伪装部分游戏不适用（如《毁灭战士：永恒》）。
 ## 三、排查路径
 - 安装后先跑 `Check_DLSS_Runtime.bat` 检查运行库状态；
 - **启动即闪退（游戏）**：核验注入链版本一致（dxgi.dll 与 OptiScaler.dll 尺寸/SHA 必须一致）→ 查 `[Hooks] D3D11FeatureLevelElevation`（DX11 设备错误设 false）→ 检查第三方注入件冲突（REFramework dinput8 / Fakenvapi version.dll）；
+- **神经渲染报「NGX 核心拒绝其能力参数」**：确认 nvngx_dlssnr.dll 与 GPU 匹配（RTX 20/30/40 通用 ShortFuse 310.8 兼容版 E67DEE；310.9 面向 RTX 50，规范 §16.144）；
 - 日志诊断：`OptiScaler.ini` 中 `LogToFile=true`、`LogLevel=2`，复现后查 logs/；
 - 一键还原：删除 OptiScaler.ini 让程序重建默认配置；卸载用 `uninstall_optiscaler.bat`（不会误删游戏原文件）；
 - 如遇上游 bug，可尝试原版构建：[wilsjo2/OptiScaler-DLSSNR-PreSR-Multipass](https://github.com/wilsjo2/OptiScaler-DLSSNR-PreSR-Multipass)、[janblade/OptiScaler-F5-DLSSNR-Multipass](https://github.com/janblade/OptiScaler-F5-DLSSNR-Multipass)。
