@@ -1,5 +1,5 @@
 # Features — 功能总览
-> 基于神经渲染基座（0.1.31 光学 F5Low，DLL 哈希 ecafed90）+ v1.4.53 组件整合（232 文件 / 539.6MB）。以下功能对应菜单项与配置键。
+> 基于神经渲染基座（0.1.31 光学 F5Low，DLL 哈希 F29295BC）+ v1.4.55 组件整合（220 文件 / 552MB）。以下功能对应菜单项与配置键。
 ## 一、超分辨率（Upscaling）
 - DLSS：N 卡 RTX 20+（含超分/去噪/帧生成三件套 nvngx_dlss/d/dg）；
 - FSR 3.1 / FSR4：AMD/Intel 卡（amd_fidelityfx 全家桶；FSR4 需 RDNA3+ 或自定义替换件）；
@@ -8,14 +8,14 @@
 ## 二、帧生成 / 多帧生成（FG / MFG）
 | 后端 | 说明 |
 | --- | --- |
-| DLSSG | RTX 20/30/40 系原生（streamline/nvngx_dlssg.dll） |
+| DLSSG | RTX 20/30/40 系原生（streamline/nvngx_dlssg.dll，**310.9.16**） |
 | XeFG | XeSS 帧生成（libxess_fg.dll，DX12 游戏；DX11 用 OptiFG 输入） |
 | FSR3-FG | amd_fidelityfx_framegeneration（A 卡友好） |
 | DLSS Enabler | 无原生 FG 游戏的 DLSSG 桥接（dlss-enabler-headless） |
 | OptiFG | 替代帧生成输入（配合 DLSSG 输出） |
 | MFG 多帧 | 2X~6X：InterpolationCount + UnlockMFG + 解锁组件 |
 - 倍率档位：2x / 3x / 4x / 5x / 6x（5x - Enabler、6x - FFX + Enabler 等）；
-- **解锁组件（v1.4.51–53，多方案二选一）**：内置 dlssg_sm86（SM86 架构 4X）、dlssg_unlock_3109（RTX 20/30 系 310.9 驱动版）、MFGUnlocker 插件位（plugins/MFGUnlocker.asi，LoadAsiPlugins=true，开箱即用）、DLSSG6X 独立组件（winmm.dll + dlssg_sm86 + ini，20/30 系 6X 独立部署）；
+- **解锁组件（v1.4.51–55，多方案二选一）**：内置 dlssg_sm86（SM86 架构 4X）、dlssg_unlock_3109（RTX 20/30 系 310.9 驱动版）、MFGUnlocker 插件位（plugins/MFGUnlocker.asi，LoadAsiPlugins=true，开箱即用）、DLSSG 独立组件（version.dll + dlssg_sm86 + ini，runtime 310.9.16，20/30 系 6X 独立部署）；
 - 内置 MFG 解锁：[DLSSG] AmpereMfgUnlock=true（RTX 20/30 系 4X）。
 ## 三、神经渲染（NR）
 - N 卡 RTX 20+；菜单：启用神经网络渲染；
@@ -24,7 +24,7 @@
 - **曝光默认随游戏**（0.1.31 新）：NR 输入页五档来源（自动 / 手动纸白 / 游戏曝光 / 扫描曝光 / 自动曝光），无效控件自动置灰；
 - F5Low 低延迟：无 Reflex 游戏 NVIDIA 卡自动装 NVIDIA Reflex，其他经 fakenvapi 装 Anti-Lag 2 / XeLL / LatencyFlex；
 - 计算精度三模式：自动 / 标准精度 / FP8，用 `switch_nr_precision.bat` 切换（[DlssNr] Precision=0/1/4）；
-- 模型：官方原版（默认，合规不损画质）；**nvngx_dlssnr.dll 不随升级替换**（需要时用户自行手动替换）。
+- 模型：**ShortFuse 310.8 兼容版**（E67DEE，全系通用，修复 RTX 4070「NGX 核心拒绝能力参数」；规范 §16.144）；**nvngx_dlssnr.dll 不随升级替换**（需要时用户自行手动替换）。
 ## 四、低延迟
 - **低延迟统一层（0.1.31 新）**：帧率页「输出」新增 FrameCapOnly（仅限帧数：把 FPS 上限等待移到游戏读取输入前），与 Reflex / Anti-Lag 2 / XeLL / LatencyFlex 并列可选；
 - Reflex：ForceReflex=2（[fakenvapi] 段）；
@@ -46,8 +46,8 @@
 ## 七、UI 与工具
 - 菜单面板：Insert 呼出；Page Up 关闭叠加层；
 - 调试视图：帧率叠加层、运动矢量/深度可视化（DebugView 系列）；
-- 组件即插即用：dlssg_unlock / sm_unlock / DLSSG6X 为独立替换件，复制到游戏目录使用，异常即删即恢复；
-- 运行库检查：`Check_DLSS_Runtime.bat` 输出包内组件版本速查；
+- 组件即插即用：dlssg_unlock / sm_unlock / DLSSG 独立组件为独立替换件，复制到游戏目录使用，异常即删即恢复；
+- 运行库检查：`Check_DLSS_Runtime.bat` 输出包内组件版本速查（Check / Install 自动替换 / Restore 还原三模式）；
 - 精度切换：`switch_nr_precision.bat` 数字键切换 NR 计算精度。
 ---
 *功能与 Config.md、Changelog.md 对应。*
