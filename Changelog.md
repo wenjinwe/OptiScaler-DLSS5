@@ -111,4 +111,4 @@
 ## v1.0.0（2026-10-05）— 集成重构版首发
 - 整目录扫描全部 OptiScaler 源包，选定 v97 dev 为基座；组件整合；规范第十五章建立。
 ---
-*变更记录与 汉化基准规范.md 同步演进。*
+*变更记录与 [docs/LOCALIZATION_STANDARD.md](docs/LOCALIZATION_STANDARD.md) 同步演进。*
