@@ -1,5 +1,5 @@
 # Config — OptiScaler.ini 配置说明
-> 仓库内 OptiScaler.ini 为 v1.4.55 关键键示例（节选）；完整版（2151 行，中文注释全量）见成品包内 OptiScaler.ini。
+> 仓库内 OptiScaler.ini 为 v1.4.56 关键键示例（节选）；完整版（中文注释全量）见成品包内 OptiScaler.ini。
 > 完整键表以 ini 内注释为准；本页说明常用键与性能预设。
 ## 一、XeFG 性能预设（v1.3.1 起）
 ### 均衡档（默认应用，低风险）
