@@ -6,11 +6,11 @@
 
 **简体中文**
 
-[![集成重构版 v1.4.55](https://img.shields.io/badge/集成重构版-v1.4.55-76b900?style=flat-square)](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)
+[![集成重构版 v1.4.56](https://img.shields.io/badge/集成重构版-v1.4.56-76b900?style=flat-square)](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)
 ![基座 0.1.31](https://img.shields.io/badge/基座-0.1.31-7c3aed?style=flat-square)
 ![汉化 1900+](https://img.shields.io/badge/汉化-1900%2B处-2563eb?style=flat-square)
 
-**[下载 v1.4.55](https://github.com/wenjinwe/OptiScaler-DLSS5/releases) · [安装与使用](docs/INSTALL.md) · [更新记录](Changelog.md) · [已知问题](Issues.md)**
+**[下载 v1.4.56](https://github.com/wenjinwe/OptiScaler-DLSS5/releases) · [更新记录](Changelog.md) · [已知问题](Issues.md)**
 
 </div>
 
@@ -35,16 +35,16 @@
 3. 运行 `setup_windows.bat`，按数字键选择加载入口（一般 `dxgi.dll` 即可）；
 4. 启动游戏，按 `Insert` 打开面板，先确认基础功能正常，再逐项调整帧生成与神经渲染。
 
-安装完成后建议先运行 `Check_DLSS_Runtime.bat` 检查运行库状态；详细步骤、更新与卸载见[安装与使用](docs/INSTALL.md)。
+安装完成后建议先运行 `Check_DLSS_Runtime.bat` 检查运行库状态；详细步骤、更新与卸载见成品包内 `INSTALL-DLSSNR.md` 与 `使用说明.txt`。
 
-## v1.4.55 要点
+## v1.4.56 要点
 
-- **运行问题修复 ×2**：NR 模型 GPU 不匹配（RTX 4070 报「NGX 核心拒绝其能力参数」→ streamline `nvngx_dlssnr.dll` 换 ShortFuse 310.8 兼容版 E67DEE，全系通用）；帧生成选项消失（dlssg 运行库与 MFGUnlocker 兼容冲突 → 按决定维持 310.9.16 独立组件路线）；
-- **全面复审**：DLL 映射表 1335 键全交叉 0 漏译、脚本冒烟 5/5、SHA256SUMS 219 条 0 失配、verifier 5/5；220 文件 / 552MB，同号重打包。
+- **UI 汉化三轮深扫（累计 21 处补译）**：截图驱动 7 处（导航 Image→图像、Input→输入；底部 Close→关闭、开 Wiki→开维基；垂同区 垂直同步设→垂直同步、垂同开→垂直开、垂同关→垂直关）→ 枚举类 13 处（日志级 Error→错误、Info→信息；底部 自(1.4)→自动(1.4)；外观 明亮/强烈/人脸；比较 擦除/缩放；引擎 其他；曝光 高/自定义；背景 完整）→ 一致性补译 Watercolour→水彩；文件尾未扫区 986KB 全扫 0 漏译；
+- **质量闭环**：全量回读 24/24 OK、映射表 1345 条、SHA256SUMS 同步；DLL SHA12=`3af21dabc309`；
+- **重打包**：218 文件 / 520MB，zip↔目录 218/218 匹配 0 多余。
 
 ## 文档与反馈
 
-- [文档导航](docs/README.md)：安装使用、配置说明、汉化规范等全部文档索引。
 - [更新记录](Changelog.md) · [功能总览](Features.md) · [配置说明](Config.md) · [已知问题](Issues.md) · [显卡伪装](Spoofing.md)。
 - [提交问题](https://github.com/wenjinwe/OptiScaler-DLSS5/issues)：请附版本、游戏、显卡/驱动、加载入口、FG 输入/输出、复现步骤与日志。
 
