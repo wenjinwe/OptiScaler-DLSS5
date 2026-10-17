@@ -1,5 +1,5 @@
 # Features — 功能总览
-> 基于神经渲染基座（0.1.31 光学 F5Low，DLL 哈希 F29295BC）+ v1.4.55 组件整合（220 文件 / 552MB）。以下功能对应菜单项与配置键。
+> 基于神经渲染基座（0.1.31 光学 F5Low）+ v1.4.56 组件整合（218 文件 / 520MB，DLL SHA12 `3af21dabc309`）。以下功能对应菜单项与配置键。
 ## 一、超分辨率（Upscaling）
 - DLSS：N 卡 RTX 20+（含超分/去噪/帧生成三件套 nvngx_dlss/d/dg）；
 - FSR 3.1 / FSR4：AMD/Intel 卡（amd_fidelityfx 全家桶；FSR4 需 RDNA3+ 或自定义替换件）；
@@ -15,7 +15,7 @@
 | OptiFG | 替代帧生成输入（配合 DLSSG 输出） |
 | MFG 多帧 | 2X~6X：InterpolationCount + UnlockMFG + 解锁组件 |
 - 倍率档位：2x / 3x / 4x / 5x / 6x（5x - Enabler、6x - FFX + Enabler 等）；
-- **解锁组件（v1.4.51–55，多方案二选一）**：内置 dlssg_sm86（SM86 架构 4X）、dlssg_unlock_3109（RTX 20/30 系 310.9 驱动版）、MFGUnlocker 插件位（plugins/MFGUnlocker.asi，LoadAsiPlugins=true，开箱即用）、DLSSG 独立组件（version.dll + dlssg_sm86 + ini，runtime 310.9.16，20/30 系 6X 独立部署）；
+- **解锁组件（v1.4.51–56，多方案二选一）**：内置 dlssg_sm86（SM86 架构 4X）、dlssg_unlock_3109（RTX 20/30 系 310.9 驱动版）、MFGUnlocker 插件位（plugins/MFGUnlocker.asi，LoadAsiPlugins=true，开箱即用）、DLSSG 独立组件（version.dll + dlssg_sm86 + ini，runtime 310.9.16，20/30 系 6X 独立部署）；
 - 内置 MFG 解锁：[DLSSG] AmpereMfgUnlock=true（RTX 20/30 系 4X）。
 ## 三、神经渲染（NR）
 - N 卡 RTX 20+；菜单：启用神经网络渲染；
@@ -48,6 +48,7 @@
 - 调试视图：帧率叠加层、运动矢量/深度可视化（DebugView 系列）；
 - 组件即插即用：dlssg_unlock / sm_unlock / DLSSG 独立组件为独立替换件，复制到游戏目录使用，异常即删即恢复；
 - 运行库检查：`Check_DLSS_Runtime.bat` 输出包内组件版本速查（Check / Install 自动替换 / Restore 还原三模式）；
-- 精度切换：`switch_nr_precision.bat` 数字键切换 NR 计算精度。
+- 精度切换：`switch_nr_precision.bat` 数字键切换 NR 计算精度；
+- **UI 汉化**：约 1900+ 处 UI 串中文化（UTF-8 等长替换；持续深扫，v1.4.56 累计 21 处新补译）。
 ---
 *功能与 Config.md、Changelog.md 对应。*
