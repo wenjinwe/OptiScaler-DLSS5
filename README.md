@@ -6,11 +6,11 @@
 
 **简体中文**
 
-[![集成重构版 v1.4.56](https://img.shields.io/badge/集成重构版-v1.4.56-76b900?style=flat-square)](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)
-![基座 0.1.31](https://img.shields.io/badge/基座-0.1.31-7c3aed?style=flat-square)
-![汉化 1900+](https://img.shields.io/badge/汉化-1900%2B处-2563eb?style=flat-square)
+[![集成重构版 v1.4.58](https://img.shields.io/badge/集成重构版-v1.4.58-76b900?style=flat-square)](https://github.com/wenjinwe/OptiScaler-DLSS5/releases)
+![基座 0.1.33](https://img.shields.io/badge/基座-0.1.33-7c3aed?style=flat-square)
+![汉化 2000+](https://img.shields.io/badge/汉化-2000%2B处-2563eb?style=flat-square)
 
-**[下载 v1.4.56](https://github.com/wenjinwe/OptiScaler-DLSS5/releases) · [更新记录](Changelog.md) · [已知问题](Issues.md)**
+**[下载 v1.4.58](https://github.com/wenjinwe/OptiScaler-DLSS5/releases) · [更新记录](Changelog.md) · [已知问题](Issues.md)**
 
 </div>
 
@@ -23,10 +23,10 @@
 | 超分辨率 | DLSS / FSR 3.1 / FSR4 / XeSS / 原生直通，跨 NVIDIA / AMD / Intel GPU |
 | 帧生成 | DLSSG / XeFG（XeSS FG）/ FSR3-FG / DLSS Enabler / OptiFG |
 | 多帧生成（MFG） | 2X~6X 倍率链；RTX 20/30 系内置解锁（4X，纯配置）+ MFGUnlocker 插件位 + DLSSG 独立组件（含 6X）；高倍率失败自动回退 |
-| 神经渲染（NR） | 光学 F5Low 独立页 + Look Presets 外观预设 + 曝光/白点校准 + 模型精度/多遍数（RTX 20+） |
+| 神经渲染（NR） | 光学 F5Low 独立页 + Look Presets 外观预设 + 曝光/白点校准 + 模型精度/多遍数（RTX 20+）；超分前运行修复（RunBeforeSR=true） |
 | 平滑运动（SM） | NVIDIA Smooth Motion 解锁（sm_unlock 家族） |
 | 显卡伪装 | fakenvapi（AMD/Intel 伪装 NVIDIA 运行 DLSS） |
-| 汉化与 UI | 约 1900+ 处 UI 串中文化（UTF-8 等长替换）；基准蓝主题、窗口可缩放、主题自动保存、FPS 悬浮窗七模式 |
+| 汉化与 UI | 约 2000+ 处 UI 串中文化（UTF-8 等长替换，严格字节长度控制）；基准蓝主题、窗口可缩放、主题自动保存、FPS 悬浮窗七模式 |
 
 ## 快速开始
 
@@ -37,11 +37,19 @@
 
 安装完成后建议先运行 `Check_DLSS_Runtime.bat` 检查运行库状态；详细步骤、更新与卸载见成品包内 `INSTALL-DLSSNR.md` 与 `使用说明.txt`。
 
-## v1.4.56 要点
+## v1.4.58 要点
 
-- **UI 汉化三轮深扫（累计 21 处补译）**：截图驱动 7 处（导航 Image→图像、Input→输入；底部 Close→关闭、开 Wiki→开维基；垂同区 垂直同步设→垂直同步、垂同开→垂直开、垂同关→垂直关）→ 枚举类 13 处（日志级 Error→错误、Info→信息；底部 自(1.4)→自动(1.4)；外观 明亮/强烈/人脸；比较 擦除/缩放；引擎 其他；曝光 高/自定义；背景 完整）→ 一致性补译 Watercolour→水彩；文件尾未扫区 986KB 全扫 0 漏译；
-- **质量闭环**：全量回读 24/24 OK、映射表 1345 条、SHA256SUMS 同步；DLL SHA12=`3af21dabc309`；
-- **重打包**：218 文件 / 520MB，zip↔目录 218/218 匹配 0 多余。
+- **基座升级 0.1.27 → 0.1.33（DLSSNR Multipass feat plugins page）**：Multipass 架构 + Plugins 页面 + DLSSNR 深度优化；
+- **左侧导航 tab 全量汉化**：严格字节长度控制（中文 UTF-8 每字 3 bytes），利用 null 填充空间扩展短字符串，解决单字按钮问题；ID 保护铁律：严格区分 ImGui ID 与显示文字，ID 绝对不改；
+- **功能修复 ×3**：
+  ① 神经渲染未正常启用 → `[DlssNr] RunBeforeSR=true`（超分前运行 NR，新基座超分后路径有 bug）；
+  ② 帧生成只有 2X 没有 6X → `[Plugins] LoadAsiPlugins=true` + `[DLSSG] InterpolationCount=5`（5 次插值 = 6X）；
+  ③ 卸载不干净 → 卸载脚本添加删除 `OptiScaler\nvngx_dlssnr.dll`；
+- **包体积优化**：包内只存一份 `streamline\nvngx_dlssnr.dll`（263.4 MB），安装脚本自动复制到 `OptiScaler\` 根目录；
+- **bat 文件编码修复**：全程 GBK (CP936) 编码读写，解决中文乱码问题；
+- **规范沉淀**：§16.181（T95 三步验证法）+ §16.182（v0.1.27→v0.1.33 升级全量问题复盘，27 类问题 + 12 步检查清单 + T96-T99 四条新铁律）；
+- **五轮全面审查**：R1 全面解析与审查 → R2 修复安装/卸载脚本 → R3 ini 键值深度审查 → R4 重复文件检查 → R5 最终检查，全部通过；
+- 200+ 文件 / 596.6 MB（zip）；SHA256 `1266539B61E1BAB91BB22F1DC68A9EAB206F2275D7A8DCA1EF5CDC001A2B5207`。
 
 ## 文档与反馈
 
